@@ -10,7 +10,6 @@ let apiQuotes = [];
 function newQuote() {
   //Pick a random quote from apiQuotes array
   const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
-  console.log(quote);
   //Check if Author field is blank and replace with 'Unknown'
   if (!quote.author) {
     authorText.textContent = "Unknown";
@@ -38,6 +37,16 @@ async function getQuotes() {
     alert(e);
   }
 }
+
+//Tweet Quote
+function tweetQuote() {
+  const twitterUrl = `https://twitter.com/intent/tweet?=${quoteText.textContent} - ${authorText.textContent}`;
+  window.open(twitterUrl, "_blank"); //open in new tab
+}
+
+//Event Listeners
+newQuoteButton.addEventListener("click", newQuote);
+twitterButton.addEventListener("click", tweetQuote);
 
 //On Load
 getQuotes();
